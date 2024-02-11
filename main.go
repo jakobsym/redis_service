@@ -1,21 +1,19 @@
 package main
 
 import (
+	"context"
 	"fmt"
-	"net/http"
+
+	"github.com/jakobsym/redis_service/application"
 )
+
+// storing orders made from ecommerce website via crud
 
 // can send curl commands to server to test if working as intended
 func main() {
-	server := &http.Server{
-		Addr:    ":3000",
-		Handler: http.HandlerFunc(basicHandler),
+	app := application.New()
+	err := app.Start(context.TODO())
+	if err != nil {
+		fmt.Println("Failed to start app: ", err)
 	}
-	if err := server.ListenAndServe(); err != nil {
-		fmt.Println("error listening to server")
-	}
-}
-
-func basicHandler(w http.ResponseWriter, r *http.Request) {
-	w.Write([]byte("Hello, World"))
 }
