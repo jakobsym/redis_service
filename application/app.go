@@ -65,12 +65,12 @@ func (a *App) Start(ctx context.Context) error {
 		defer cancel()
 		return server.Shutdown(timeout)
 	}
-
-	// can check if channel was closed below
-	// err, open := <-ch
-	/*
-		if !open {
-			// channel is closed
-		}
-	*/
 }
+
+// can check if channel was closed below
+// err, open := <-ch
+/*
+	if !open {
+		// channel is closed
+	}
+*/
